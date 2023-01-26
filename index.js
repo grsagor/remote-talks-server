@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import colors from "colors";
 import fetch from "node-fetch";
 import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+import feedBackRouter from "./routes/feedbackRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -22,6 +23,8 @@ async function run() {
 		app.get("/", (req, res) => {
 			res.send("Remote Talks is running on 🚀🚀🚀🚀");
 		});
+
+		app.use("/api/feedback/", feedBackRouter);
 
 		/* Video SDK */
 		app.get("/get-token", (req, res) => {
